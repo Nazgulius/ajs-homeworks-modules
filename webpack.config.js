@@ -3,19 +3,30 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const path = require('path');
 
 module.exports = {
-  entry: 'index.js',
+  entry: './src/index.js',
   output: {
-    path: path.resolve(__dirname, './dist'),
-    filename: 'index_bundle.js',
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js',
   },
-  plugins: [new HtmlWebpackPlugin()],
-  plugins: [new MiniCssExtractPlugin()],
+  mode: "production",
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new MiniCssExtractPlugin(),
+    ],  
   module: {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, "css-loader"],
+        use: [
+            MiniCssExtractPlugin.loader, 
+            "css-loader"],
       },
-    ],
+      {
+        test: /\.html$/i,
+        use: [
+            HtmlWebpackPlugin.loader, 
+            ],
+      },
+    ],    
   },
 };
