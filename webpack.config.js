@@ -10,7 +10,9 @@ module.exports = {
   },
   mode: "production",
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({      
+      template: './src/index.html',
+    }),
     new MiniCssExtractPlugin(),
     ],  
   module: {
@@ -25,7 +27,7 @@ module.exports = {
         test: /\.html$/i,
         use: [
             HtmlWebpackPlugin.loader, 
-            ],
+            "html-loader"],
       },
     ],    
   },
